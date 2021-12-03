@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
 import 'package:stinger_web/components/my_searchfield.dart';
 import 'package:stinger_web/models/showcase_model.dart';
@@ -23,7 +24,6 @@ class _ShowcasePageState extends State<ShowcasePage> {
   void initState() {
     HttpRequests().getCategories().then((value) {
       if (value != null) {
-        print("фвфы $value");
         setState(() {
           showcase = value;
           isLoading = false;
@@ -39,37 +39,36 @@ class _ShowcasePageState extends State<ShowcasePage> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? Scaffold(body: Center(child: Indicator.circle))
-        : Scaffold(
-            backgroundColor: Colors.white,
-            body: CustomScrollView(slivers: [
-              SliverPadding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    const SizedBox(height: 21),
-                    MySearchField(controller: searchController),
-                    const SizedBox(height: 20),
-                  ]),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 110),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1.5,
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 40,
-                    mainAxisSpacing: 40,
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) =>
-                          ProjectCard(data: showcase[index]),
-                      childCount: showcase.length),
-                  //padding: const EdgeInsets.all(15),
-                ),
+        ? Center(child: Indicator.circle)
+        : Column(
+        children: [
+          MySearchField(controller: searchController),
+          const SizedBox(height: 40),
+          Expanded(
+              child: AnimationLimiter(
+                  child: GridView.builder(
+                      itemCount: showcase.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 590/428,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 40,
+                        mainAxisSpacing: 40,
+                      ),
+                      itemBuilder: (context, index) => AnimationConfiguration.staggeredGrid(
+                        columnCount: 2,
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: ScaleAnimation(
+                          scale: 0.5,
+                          child: FadeInAnimation(
+                              child: ProjectCard(data: showcase[index])
+                          )
+                        )
+                      )
+                  )
               )
-            ]));
+          )
+        ]
+    );
   }
 }

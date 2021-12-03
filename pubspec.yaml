@@ -18,6 +18,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_maps_flutter_web: ^0.3.2
   file_picker: ^4.2.7
+  flutter_staggered_animations: ^1.0.0
+  animations: ^2.0.2
 
 dev_dependencies:
   flutter_test:

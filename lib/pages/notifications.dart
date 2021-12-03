@@ -34,16 +34,14 @@ class NotificationsPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Wrap(
+  Widget build(BuildContext context) => Wrap(
       spacing: 40,
-        runSpacing: 40,
-        direction: Axis.vertical,
-        children: [
-          for (int i = 0; i < notificationModels.length; i++)
-            notification(i)
-        ]
-    )
+      runSpacing: 40,
+      direction: Axis.vertical,
+      children: [
+        for (int i = 0; i < notificationModels.length; i++)
+          notification(i)
+      ]
   );
 
   Container notification(int index) => Container(
