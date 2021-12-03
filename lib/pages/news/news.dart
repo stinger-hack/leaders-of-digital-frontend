@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stinger_web/components/my_appbar.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/news_model.dart';
 
@@ -53,7 +52,6 @@ class _NewsPageState extends State<NewsPage> {
             padding: const EdgeInsets.only(top: 40, left: 110, right: 110),
             child: Column(
               children: [
-                const MyAppBar(selectedPage: 1),
                 const SizedBox(height: 40),
                 Expanded(
                   child: GridView.builder(

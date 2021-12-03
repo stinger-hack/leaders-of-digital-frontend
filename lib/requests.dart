@@ -69,4 +69,18 @@ class HttpRequests {
     );
     print("ффввв ${response.body}");
   }
+
+  Future<List<Showcase>> getMyProjects() async {
+    final response = await http.get(
+      Uri.parse(url + 'v1/api/showcase/my'),
+      headers: {'Content-type': 'application/json'},
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      final result = projectsModelFromJson(utf8.decode(response.bodyBytes));
+      return result.showcase;
+    } else {
+      throw ("getFavorites bad status code: " + response.statusCode.toString());
+    }
+  }
 }

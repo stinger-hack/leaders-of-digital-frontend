@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stinger_web/components/my_appbar.dart';
 import 'package:stinger_web/models/notification_model.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -36,7 +35,6 @@ class NotificationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: const MyAppBar(selectedPage: 0),
     body: Wrap(
       spacing: 40,
         runSpacing: 40,

@@ -1,7 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:stinger_web/components/my_appbar.dart';
-
 import '../../constants.dart';
 import '../../requests.dart';
 

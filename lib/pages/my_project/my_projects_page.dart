@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
 import 'package:stinger_web/components/my_searchfield.dart';
-import 'package:stinger_web/models/favorite_model.dart';
 import 'package:stinger_web/models/showcase_model.dart';
-import 'package:stinger_web/pages/showcase/project_card.dart';
-
 import '../../constants.dart';
 import '../../requests.dart';
-import 'favorite_card.dart';
+import 'my_projects_card.dart';
 
-class FavoritesPage extends StatefulWidget {
-  const FavoritesPage({Key? key}) : super(key: key);
+class MyProjectsPage extends StatefulWidget {
+  const MyProjectsPage({Key? key}) : super(key: key);
 
   @override
-  _FavoritesPageState createState() => _FavoritesPageState();
+  _MyProjectsPageState createState() => _MyProjectsPageState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> {
+class _MyProjectsPageState extends State<MyProjectsPage> {
   bool isLoading = true;
   var searchController = TextEditingController();
-  List<Favorite> favorite = [];
+  List<Showcase> favorite = [];
 
   @override
   void initState() {
-    HttpRequests().getFavorites().then((value) {
+    HttpRequests().getMyProjects().then((value) {
       if (value != null) {
         setState(() {
           favorite = value;
@@ -66,7 +63,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) => GestureDetector(
                       onTap: () {},
-                      child: FavoriteCard(data: favorite[index])),
+                      child: MyProjectCard(data: favorite[index])),
                   childCount: favorite.length),
               //padding: const EdgeInsets.all(15),
             ),

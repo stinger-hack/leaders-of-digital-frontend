@@ -2,7 +2,6 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
-import 'package:stinger_web/components/my_appbar.dart';
 import 'dart:ui' as ui;
 
 import 'demo_day.dart';
@@ -63,7 +62,6 @@ class _GoogleMapState extends State<GoogleMap> {
     });
 
     return Scaffold(
-      appBar: const MyAppBar(selectedPage: 4),
       body: Stack(
         children: [
           HtmlElementView(viewType: htmlId),

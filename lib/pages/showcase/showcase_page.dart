@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stinger_web/components/my_appbar.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
 import 'package:stinger_web/components/my_searchfield.dart';
 import 'package:stinger_web/models/showcase_model.dart';
@@ -42,14 +41,13 @@ class _ShowcasePageState extends State<ShowcasePage> {
     return isLoading
         ? Scaffold(body: Center(child: Indicator.circle))
         : Scaffold(
-            backgroundColor: background,
+            backgroundColor: Colors.white,
             body: CustomScrollView(slivers: [
               SliverPadding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    const MyAppBar(selectedPage: 0),
                     const SizedBox(height: 21),
                     MySearchField(controller: searchController),
                     const SizedBox(height: 20),

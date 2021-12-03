@@ -6,6 +6,7 @@ import 'package:stinger_web/components/my_button.dart';
 import 'package:stinger_web/components/my_textfield.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 import '../../constants.dart';
+import '../main_page.dart';
 import 'auth.dart';
 import 'forgot_passwort.dart';
 
@@ -87,7 +88,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ShowcasePage()));
+                              builder: (context) => const MainPage()));
                       // FluroRouterClass.router.navigateTo(context, "/showcase",
                       //     transition: TransitionType.fadeIn);
 
