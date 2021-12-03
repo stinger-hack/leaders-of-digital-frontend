@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stinger_web/create_project/create_project_page.dart';
 
 import '../constants.dart';
 
@@ -11,7 +12,7 @@ class MySearchField extends StatefulWidget {
   _MySearchFieldState createState() => _MySearchFieldState();
 }
 
-class _MySearchFieldState extends State<MySearchField>{
+class _MySearchFieldState extends State<MySearchField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,7 +102,10 @@ class _MySearchFieldState extends State<MySearchField>{
             ),
             primary: white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CreateProjectPage()));
+          },
           child: Center(
             child: FittedBox(
               fit: BoxFit.cover,

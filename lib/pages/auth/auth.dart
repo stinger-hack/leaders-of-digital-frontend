@@ -32,20 +32,18 @@ class AuthPage extends StatelessWidget {
           ),
           Center(
             child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey),
-                    boxShadow: [BoxShadow(color: shadow, blurRadius: 20)],
-                    color: white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  margin: const EdgeInsets.all(20),
-                  height: height,
-                  width: width,
-                  child: Container(child: child),
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(color: shadow, blurRadius: 10, spreadRadius: 1)
+                  ],
+                  color: white,
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                margin: const EdgeInsets.all(20),
+                height: height,
+                width: width,
+                child: Container(child: child),
               ),
             ),
           ),

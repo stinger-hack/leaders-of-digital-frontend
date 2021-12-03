@@ -83,4 +83,18 @@ class HttpRequests {
       throw ("getFavorites bad status code: " + response.statusCode.toString());
     }
   }
+
+  Future<bool> uploadSelectedFile(objFile) async {
+    final request =
+        http.MultipartRequest("POST", Uri.parse(url + 'v1/api/create_file'));
+    request.files.add(http.MultipartFile(
+        "upload_file", objFile.readStream, objFile.size,
+        filename: objFile.name));
+    var resp = await request.send();
+
+    String result = await resp.stream.bytesToString();
+
+    print(result);
+    return true;
+  }
 }

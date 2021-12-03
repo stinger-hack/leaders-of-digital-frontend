@@ -25,7 +25,7 @@ class MyButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(
-            horizontal: 40.0,
+            horizontal: 20.0,
             vertical: 20.0,
           ),
           shape: RoundedRectangleBorder(
@@ -35,12 +35,14 @@ class MyButton extends StatelessWidget {
         ),
         onPressed: onTap,
         child: Center(
-          child: Text(
-            txt,
-            style: const TextStyle(
-              fontStyle: FontStyle.normal,
-              fontSize: 22,
-              color: Colors.white,
+          child: FittedBox(
+            child: Text(
+              txt,
+              style: const TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 22,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

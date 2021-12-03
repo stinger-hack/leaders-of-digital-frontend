@@ -66,7 +66,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                 color: semiText,
               ),
             ),
-            Container(
+            SizedBox(
               width: 300,
               child: Column(
                 children: [
@@ -91,28 +91,6 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                               builder: (context) => const MainPage()));
                       // FluroRouterClass.router.navigateTo(context, "/showcase",
                       //     transition: TransitionType.fadeIn);
-
-
-                      // bool canSignUp = true;
-                      // if (canGetName) {
-                      //   setState(() => errorName = "");
-                      // } else {
-                      //   setState(() {
-                      //     errorName = "Пустое поле недопустимо";
-                      //     canSignUp = false;
-                      //   });
-                      // }
-                      // if (canGetPassword) {
-                      //   setState(() => errorPassword = "");
-                      // } else {
-                      //   setState(() {
-                      //     errorPassword = "Не указан пароль";
-                      //     canSignUp = false;
-                      //   });
-                      // }
-                      // if (canSignUp) {
-                      //   //signUp();
-                      // }
                     },
                   ),
                 ],
@@ -132,7 +110,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                         ..onTap = () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ForgotPassword())), //
+                                builder: (context) => const ForgotPassword())), //
                       text: 'Забыли пароль?',
                       style:
                           TextStyle(color: mainGreen, fontFamily: 'Montserrat'))
