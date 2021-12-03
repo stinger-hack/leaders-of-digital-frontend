@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/favorite_model.dart';
 import 'package:stinger_web/models/showcase_model.dart';
+import 'package:stinger_web/pages/showcase/full_project_card.dart';
 import 'package:stinger_web/requests.dart';
 
 class FavoriteCard extends StatefulWidget {
@@ -73,7 +74,10 @@ class _FavoriteCardState extends State<FavoriteCard> {
             )
           ]),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const FullProjectCard()));
+        },
         child: Column(
           children: [
             SizedBox(

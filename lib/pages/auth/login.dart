@@ -7,6 +7,7 @@ import 'package:stinger_web/components/my_textfield.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 import '../../constants.dart';
 import 'auth.dart';
+import 'forgot_passwort.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -130,7 +131,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                         ..onTap = () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Container())), //
+                                builder: (context) => ForgotPassword())), //
                       text: 'Забыли пароль?',
                       style:
                           TextStyle(color: mainGreen, fontFamily: 'Montserrat'))

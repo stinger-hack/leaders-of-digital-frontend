@@ -28,6 +28,7 @@ class Favorite {
     required this.categoryName,
     required this.createdAt,
     required this.imgLink,
+    //required this.isLiked,
   });
 
   String startupId;
@@ -40,6 +41,7 @@ class Favorite {
   String categoryName;
   String createdAt;
   String imgLink;
+  //bool isLiked;
 
   factory Favorite.fromJson(Map<String, dynamic> json) => Favorite(
     startupId: json["startup_id"],
@@ -52,5 +54,6 @@ class Favorite {
     categoryName: json["category_name"],
     createdAt: json["created_at"],
     imgLink: json["img_link"],
+    //isLiked: json["is_liked"],
   );
 }

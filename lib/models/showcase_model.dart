@@ -33,6 +33,7 @@ class Showcase {
     required this.categoryName,
     required this.imgLink,
     required this.createdAt,
+    required this.isLiked,
   });
 
   String startupId;
@@ -45,6 +46,7 @@ class Showcase {
   String categoryName;
   String imgLink;
   String createdAt;
+  bool isLiked;
 
   factory Showcase.fromJson(Map<String, dynamic> json) => Showcase(
     startupId: json["startup_id"] ?? '',
@@ -57,6 +59,7 @@ class Showcase {
     categoryName: json["category_name"] ?? '',
     imgLink: json["img_link"] ?? '',
     createdAt: json["created_at"] ?? '',
+    isLiked: json["is_liked"],
   );
 
 }

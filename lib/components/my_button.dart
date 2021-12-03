@@ -15,11 +15,12 @@ class MyButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: shadow,
-            blurRadius: 5,
-            spreadRadius: 5,
+            offset: const Offset(0, 2),
+            blurRadius: 2,
+            spreadRadius: 1,
           )
         ],
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(24),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
