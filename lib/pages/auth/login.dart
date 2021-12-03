@@ -129,7 +129,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                                 builder: (context) => Container())), //
                       text: 'Забыли пароль?',
                       style:
-                          TextStyle(color: btnText, fontFamily: 'Montserrat'))
+                          TextStyle(color: mainGreen, fontFamily: 'Montserrat'))
                 ],
               ),
             ),
