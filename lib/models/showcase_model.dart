@@ -35,6 +35,8 @@ class Showcase {
     required this.studyFacility,
     required this.userId,
     required this.categoryName,
+    required this.imgLink,
+    required this.createdAt,
   });
 
   String startupId;
@@ -45,6 +47,8 @@ class Showcase {
   String studyFacility;
   String userId;
   String categoryName;
+  String imgLink;
+  String createdAt;
 
   factory Showcase.fromJson(Map<String, dynamic> json) => Showcase(
     startupId: json["startup_id"],
@@ -55,6 +59,8 @@ class Showcase {
     studyFacility: json["study_facility"],
     userId: json["user_id"],
     categoryName: json["category_name"],
+    imgLink: json["img_link"],
+    createdAt: json["created_at"],
   );
 
   Map<String, dynamic> toJson() => {

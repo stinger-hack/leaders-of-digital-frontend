@@ -10,7 +10,7 @@ class MyAppBar extends StatefulWidget with PreferredSizeWidget {
   _MyAppBarState createState() => _MyAppBarState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(70);
 }
 
 class _MyAppBarState extends State<MyAppBar> {
@@ -30,7 +30,6 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: [
           Image.asset(
@@ -73,9 +72,9 @@ class _MyAppBarState extends State<MyAppBar> {
           children: [
             IconButton(
                 onPressed: onTapNotification,
-                icon: Icon(
+                icon: const Icon(
                   Icons.notifications_none,
-                  size: 34,
+                  size: 30,
                 )),
             Positioned(
               left: 20,

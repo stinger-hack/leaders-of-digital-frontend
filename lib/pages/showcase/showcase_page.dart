@@ -44,7 +44,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             backgroundColor: background,
             body: CustomScrollView(slivers: [
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     const MyAppBar(),
@@ -55,7 +55,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 110),
                 sliver: SliverGrid(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 1.5,

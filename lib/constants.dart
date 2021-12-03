@@ -17,3 +17,5 @@ Color white = const Color(0xFFFFFFFF);
 Color shadow = const Color(0xFF000000).withOpacity(0.1);
 Color border = const Color(0xFFE8E6EA);
 Color semiGrey = const Color(0xFFAAAAAA);
+
+Color avardsBkg = const Color(0xFFebf7f7);

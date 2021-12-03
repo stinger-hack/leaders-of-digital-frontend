@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/showcase_model.dart';
@@ -23,6 +25,39 @@ class _ProjectCardState extends State<ProjectCard> {
 
   @override
   Widget build(BuildContext context) {
+    final date = DateTime.parse(widget.data.createdAt);
+    String formatMonth() {
+      switch (date.month) {
+        case 1:
+          return 'Января';
+        case 2:
+          return 'Февраля';
+        case 3:
+          return 'Марта';
+        case 4:
+          return 'Апрелья';
+        case 5:
+          return 'Мая';
+        case 6:
+          return 'Июня';
+        case 7:
+          return 'Июля';
+        case 8:
+          return 'Августа';
+        case 9:
+          return 'Сентября';
+        case 10:
+          return 'Октября';
+        case 11:
+          return 'Ноября';
+        case 12:
+          return 'Декабря';
+        default:
+          return '';
+      }
+    }
+
+    var rng = Random();
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -37,7 +72,7 @@ class _ProjectCardState extends State<ProjectCard> {
             )
           ]),
       child: GestureDetector(
-        onTap: onClick,
+        onTap: () {},
         child: Column(
           children: [
             SizedBox(
@@ -72,14 +107,15 @@ class _ProjectCardState extends State<ProjectCard> {
                       decoration: BoxDecoration(
                           color: semiGrey,
                           borderRadius: BorderRadius.circular(14)),
+                      child: Image.network(widget.data.imgLink),
                     ),
                   ),
                   Expanded(
                     flex: 2,
                     child: Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -90,12 +126,15 @@ class _ProjectCardState extends State<ProjectCard> {
                             ],
                           ),
                           stage('В кодманде:', 'От 1 до 4'),
-                          const Text(
-                            'Сертификаты:',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: const Text(
+                              'Сертификаты:',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                            ),
                           ),
-
+                          avardsIcon(rng.nextInt(3) + 1),
                         ],
                       ),
                     ),
@@ -109,10 +148,48 @@ class _ProjectCardState extends State<ProjectCard> {
               child: Column(
                 children: [
                   Text(
-                    'Программное обеспечение для анализа транспортных потоков по видео. Технология мониторинга может применяться как для учёта транспортных потоков, так и для адаптивного регулирования перекрёстков. Система способна определять...',
+                    widget.data.description,
                     maxLines: 10,
                     overflow: TextOverflow.ellipsis,
                   )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: Text(
+                    '${date.day} ${formatMonth()}, ${date.year}',
+                    style: TextStyle(color: semiGrey),
+                  )),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.download_rounded,
+                        size: 20,
+                        color: semiGrey,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.favorite,
+                        size: 20,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -122,16 +199,38 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 
-  onClick() {
-    print('lolol');
-  }
-
   stage(String step, String info) => FittedBox(
-          child: Container(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+      child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             FittedBox(child: Text(step, style: oneStyle)),
             FittedBox(child: Text(info, style: twoStyle)),
           ])));
+
+  avardsIcon(int index) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        height: 50,
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            for (int i = 0; i < index; i++)
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: avardsBkg,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/sport${i + 1}.png',
+                    scale: 1,
+                  ),
+                ),
+              )
+          ],
+        ),
+      );
 }
