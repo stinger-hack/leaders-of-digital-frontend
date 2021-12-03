@@ -20,7 +20,6 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
       body: Stack(
         children: [
           Image.asset(
@@ -32,7 +31,7 @@ class AuthPage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: Colors.greenAccent,
+            color: background,
           ),
           Center(
             child: ClipRRect(

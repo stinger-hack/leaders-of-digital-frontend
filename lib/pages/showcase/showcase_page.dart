@@ -47,7 +47,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    const MyAppBar(),
+                    const MyAppBar(selectedPage: 0),
                     const SizedBox(height: 21),
                     MySearchField(controller: searchController),
                     const SizedBox(height: 20),

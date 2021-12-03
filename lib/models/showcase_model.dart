@@ -7,7 +7,6 @@ import 'dart:convert';
 
 ProjectsModel projectsModelFromJson(String str) => ProjectsModel.fromJson(json.decode(str));
 
-String projectsModelToJson(ProjectsModel data) => json.encode(data.toJson());
 
 class ProjectsModel {
   ProjectsModel({

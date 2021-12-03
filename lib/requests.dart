@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'models/favorite_model.dart';
 import 'models/showcase_model.dart';
 
 class HttpRequests {
@@ -16,6 +17,20 @@ class HttpRequests {
       return result.showcase;
     } else {
       throw ("getCategories bad status code: " + response.statusCode.toString());
+    }
+  }
+
+  Future<List<Showcase>> getFavorites() async {
+    final response = await http.get(
+      Uri.parse(url + 'v1/api/showcase/favorite'),
+      headers: {'Content-type': 'application/json'},
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      final result = projectsModelFromJson(utf8.decode(response.bodyBytes));
+      return result.showcase;
+    } else {
+      throw ("getFavorites bad status code: " + response.statusCode.toString());
     }
   }
 

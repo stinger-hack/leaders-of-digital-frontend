@@ -87,6 +87,10 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ShowcasePage()));
+                      // FluroRouterClass.router.navigateTo(context, "/showcase",
+                      //     transition: TransitionType.fadeIn);
+
+
                       // bool canSignUp = true;
                       // if (canGetName) {
                       //   setState(() => errorName = "");

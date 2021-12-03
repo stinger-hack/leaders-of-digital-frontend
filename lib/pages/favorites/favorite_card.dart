@@ -2,22 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
+import 'package:stinger_web/models/favorite_model.dart';
 import 'package:stinger_web/models/showcase_model.dart';
 import 'package:stinger_web/requests.dart';
 
-class ProjectCard extends StatefulWidget {
+class FavoriteCard extends StatefulWidget {
   final Showcase data;
 
-  const ProjectCard({
+  const FavoriteCard({
     Key? key,
     required this.data,
   }) : super(key: key);
 
   @override
-  _ProjectCardState createState() => _ProjectCardState();
+  _FavoriteCardState createState() => _FavoriteCardState();
 }
 
-class _ProjectCardState extends State<ProjectCard> {
+class _FavoriteCardState extends State<FavoriteCard> {
   get oneStyle => const TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
   get twoStyle =>

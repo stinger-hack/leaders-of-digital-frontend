@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/auth/login.dart';
+import 'package:stinger_web/pages/favorites/favorites_page.dart';
+import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
 import '../constants.dart';
 
 class MyAppBar extends StatefulWidget with PreferredSizeWidget {
-  const MyAppBar({Key? key}) : super(key: key);
+  final int selectedPage;
+  const MyAppBar({Key? key, required this.selectedPage}) : super(key: key);
 
   @override
   _MyAppBarState createState() => _MyAppBarState();
@@ -21,9 +24,9 @@ class _MyAppBarState extends State<MyAppBar> {
     'Карта событий',
   ];
   static const menuItemsPages = [
+    ShowcasePage(),
     LogIn(),
-    LogIn(),
-    LogIn(),
+    FavoritesPage(),
     LogIn(),
   ];
 
@@ -42,14 +45,27 @@ class _MyAppBarState extends State<MyAppBar> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => menuItemsPages[i]));
+                // FluroRouterClass.router.navigateTo(context, menuItemsPages[i].toString(),
+                //     transition: TransitionType.fadeIn);
               },
               child: SizedBox(
                   width: 140,
-                  child: Text(
-                    menuItemsText[i],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: text, fontSize: 16, fontWeight: FontWeight.w500),
+                  child: Column(
+                    children: [
+                      Text(
+                        menuItemsText[i],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: text,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      widget.selectedPage == i ? Container(
+                        width: 60,
+                        height: 1.5,
+                        color: mainGreen,
+                      ) : Container()
+                    ],
                   )),
             ),
           const Spacer(flex: 1),

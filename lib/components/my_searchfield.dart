@@ -31,7 +31,7 @@ class _MySearchFieldState extends State<MySearchField> {
                   offset: const Offset(0, 1),
                 ),
               ],
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: TextField(
@@ -45,11 +45,11 @@ class _MySearchFieldState extends State<MySearchField> {
                   hoverColor: white,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: white),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: mainGreen),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
               ),
@@ -67,11 +67,10 @@ class _MySearchFieldState extends State<MySearchField> {
   Widget findButton() => Container(
         height: 50,
         width: 190,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
             primary: white,
           ),
@@ -83,7 +82,7 @@ class _MySearchFieldState extends State<MySearchField> {
                 'Найти',
                 style: TextStyle(
                   fontStyle: FontStyle.normal,
-                  fontSize: 20,
+                  fontSize: 16,
                   color: text,
                 ),
               ),
@@ -95,11 +94,10 @@ class _MySearchFieldState extends State<MySearchField> {
   Widget createRequestButton() => Container(
         height: 50,
         width: 190,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
             primary: white,
           ),
@@ -111,7 +109,7 @@ class _MySearchFieldState extends State<MySearchField> {
                 'Создать заявку',
                 style: TextStyle(
                   fontStyle: FontStyle.normal,
-                  fontSize: 20,
+                  fontSize: 16,
                   color: text,
                 ),
               ),
