@@ -2,13 +2,21 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:stinger_web/components/my_appbar.dart';
 import 'dart:ui' as ui;
 
 import 'demo_day.dart';
 import 'map_search.dart';
 
-class GoogleMap extends StatelessWidget {
+class GoogleMap extends StatefulWidget {
   const GoogleMap({Key? key}) : super(key: key);
+
+  @override
+  State<GoogleMap> createState() => _GoogleMapState();
+}
+
+class _GoogleMapState extends State<GoogleMap> {
+  bool showInfo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +55,19 @@ class GoogleMap extends StatelessWidget {
 
       final infoWindow =
       InfoWindow(InfoWindowOptions()..content = contentString);
-      marker.onClick.listen((event) => infoWindow.open(map, marker));
+      marker.onClick.listen((event) {
+        setState(() => showInfo = !showInfo);
+        infoWindow.open(map, marker);
+      });
       return elem;
     });
 
     return Scaffold(
+      appBar: const MyAppBar(selectedPage: 4),
       body: Stack(
         children: [
           HtmlElementView(viewType: htmlId),
+          if (showInfo)
           Positioned(
               top: 30,
               left: 20,

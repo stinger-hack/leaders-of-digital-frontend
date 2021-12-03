@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stinger_web/components/my_appbar.dart';
 import 'package:stinger_web/models/notification_model.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -34,17 +35,30 @@ class NotificationsPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Wrap(
-      direction: Axis.vertical,
-      children: [
-        for (int i = 0; i < notificationModels.length; i++)
-          notification(i)
-      ]
+  Widget build(BuildContext context) => Scaffold(
+    appBar: const MyAppBar(selectedPage: 0),
+    body: Wrap(
+      spacing: 40,
+        runSpacing: 40,
+        direction: Axis.vertical,
+        children: [
+          for (int i = 0; i < notificationModels.length; i++)
+            notification(i)
+        ]
+    )
   );
 
   Container notification(int index) => Container(
-      color: Colors.white,
+    height: 150,
+    width: 590,
+      padding: const EdgeInsets.only(
+          top: 16,
+          left: 20,
+          right: 20,
+          bottom: 13
+      ),
       decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           boxShadow: const [BoxShadow(
               offset: Offset(0, 2),
@@ -52,80 +66,73 @@ class NotificationsPage extends StatelessWidget {
               color: Color.fromRGBO(0, 0, 0, 0.05)
           )]
       ),
-      child: Padding(
-          padding: const EdgeInsets.only(
-              top: 16,
-              left: 20,
-              right: 20,
-              bottom: 13
-          ),
-          child: Column(
-              children: [
-                if (notificationModels[index].url != null)
-                  Row(
-                      children: [
-                        CircleAvatar(
-                            child: Image.asset(notificationModels[index].url!)
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  notificationModels[index].name!,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                      color: Color(0xff25222C)
-                                  )
-                              ),
-                              Text(
-                                  notificationModels[index].date!,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: Color(0xffB0AFB3)
-                                  )
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (notificationModels[index].url != null)
+              Row(
+                  children: [
+                    CircleAvatar(
+                        child: Image.asset(notificationModels[index].url!)
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                              notificationModels[index].name!,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Color(0xff25222C)
                               )
-                            ]
-                        )
-                      ]
-                  ),
-                const SizedBox(height: 12),
-                Text(
-                    notificationModels[index].header!,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Color(0xff25222C)
-                    )
-                ),
-                const SizedBox(height: 8),
-                Row(
-                    children: [
-                      Text(
-                        notificationModels[index].body!,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: Color(0xff66646B)
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                          height: 32,
-                          width: 32,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: const Color(0xff009A96),
-                              borderRadius: BorderRadius.circular(16)
                           ),
-                          child: const Icon(Icons.arrow_forward_ios)
-                      )
-                    ]
+                          Text(
+                              notificationModels[index].date!,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xffB0AFB3)
+                              )
+                          )
+                        ]
+                    )
+                  ]
+              ),
+            const SizedBox(height: 12),
+            Text(
+                notificationModels[index].header!,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                    color: Color(0xff25222C)
                 )
-              ]
-          )
+            ),
+            const SizedBox(height: 8),
+            Row(
+                children: [
+                  Text(
+                    notificationModels[index].body!,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        color: Color(0xff66646B)
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                      height: 32,
+                      width: 32,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: const Color(0xff009A96),
+                          borderRadius: BorderRadius.circular(16)
+                      ),
+                      child: const Icon(Icons.arrow_forward_ios)
+                  )
+                ]
+            )
+          ]
       )
   );
 }
