@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/favorites/favorites_page.dart';
-import 'package:stinger_web/pages/map.dart';
+import 'package:stinger_web/pages/map/map.dart';
 import 'package:stinger_web/pages/news/news.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
