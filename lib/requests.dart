@@ -18,4 +18,6 @@ class HttpRequests {
       throw ("getCategories bad status code: " + response.statusCode.toString());
     }
   }
+
+
 }

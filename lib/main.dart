@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stinger_web/pages/showcase/showcase_page.dart';
-import 'package:stinger_web/splash_screen.dart';
+import 'package:stinger_web/pages/showcase/full_project_card.dart';
 
 import 'models/favorite_provider.dart';
 
@@ -25,7 +24,9 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Montserrat',
         ),
         home: const Scaffold(
-          body: ShowcasePage(),
+          body: SingleChildScrollView(
+            child: FullProjectCard()
+          )
         ),
       ),
     );
