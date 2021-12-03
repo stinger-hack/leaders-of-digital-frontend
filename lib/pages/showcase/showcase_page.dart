@@ -44,6 +44,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
         : Scaffold(
             backgroundColor: background,
             body: CustomScrollView(slivers: [
+
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
                 sliver: SliverList(

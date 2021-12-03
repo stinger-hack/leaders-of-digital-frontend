@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/favorites/favorites_page.dart';
-import 'package:stinger_web/pages/map/map.dart';
-import 'package:stinger_web/pages/news.dart';
+import 'package:stinger_web/pages/map.dart';
+import 'package:stinger_web/pages/news/news.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
 import '../constants.dart';
 
 class MyAppBar extends StatefulWidget with PreferredSizeWidget {
   final int selectedPage;
+
   const MyAppBar({Key? key, required this.selectedPage}) : super(key: key);
 
   @override
@@ -22,7 +23,7 @@ class _MyAppBarState extends State<MyAppBar> {
     'Проекты',
     'Новости',
     'Избранное',
-    'Карта событий',
+    'События',
   ];
   static final menuItemsPages = [
     ShowcasePage(),
@@ -61,11 +62,9 @@ class _MyAppBarState extends State<MyAppBar> {
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),
-                      widget.selectedPage == i ? Container(
-                        width: 60,
-                        height: 1.5,
-                        color: mainGreen,
-                      ) : Container()
+                      widget.selectedPage == i
+                          ? Container(width: 80, height: 1.5, color: mainGreen)
+                          : Container()
                     ],
                   )),
             ),

@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -75,7 +76,8 @@ class _ProjectCardState extends State<ProjectCard> {
           ]),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FullProjectCard()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const FullProjectCard()));
         },
         child: Column(
           children: [
@@ -111,10 +113,11 @@ class _ProjectCardState extends State<ProjectCard> {
                       decoration: BoxDecoration(
                           color: semiGrey,
                           borderRadius: BorderRadius.circular(14)),
-                      child:
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(14),
-                            child: Image.network(widget.data.imgLink, fit: BoxFit.fill),),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.network(widget.data.imgLink,
+                            fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -190,11 +193,21 @@ class _ProjectCardState extends State<ProjectCard> {
                     height: 20,
                     child: InkWell(
                       onTap: () {},
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 20,
-                        color: Colors.red,
-                      ),
+                      child: GestureDetector(
+                          onTap: () {
+                            widget.data.isLiked = !widget.data.isLiked;
+                            setState(() {});
+                            HttpRequests()
+                                .postFavorites(widget.data.startupId)
+                                .then((value) {
+
+                            });
+                          },
+                          child: widget.data.isLiked
+                              ? const Icon(Icons.favorite,
+                                  size: 20, color: Colors.red)
+                              : const Icon(Icons.favorite_border,
+                                  size: 20, color: Colors.red)),
                     ),
                   ),
                 ],
