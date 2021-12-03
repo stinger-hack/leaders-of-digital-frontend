@@ -8,6 +8,7 @@ import 'package:stinger_web/pages/showcase/project_card.dart';
 
 import '../../constants.dart';
 import '../../requests.dart';
+import 'favorite_card.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   bool isLoading = true;
   var searchController = TextEditingController();
-  List<Showcase> favorite = [];
+  List<Favorite> favorite = [];
 
   @override
   void initState() {
@@ -67,7 +68,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) => GestureDetector(
                       onTap: () {},
-                      child: ProjectCard(data: favorite[index])),
+                      child: FavoriteCard(data: favorite[index])),
                   childCount: favorite.length),
               //padding: const EdgeInsets.all(15),
             ),

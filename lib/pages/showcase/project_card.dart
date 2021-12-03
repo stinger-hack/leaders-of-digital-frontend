@@ -111,7 +111,10 @@ class _ProjectCardState extends State<ProjectCard> {
                       decoration: BoxDecoration(
                           color: semiGrey,
                           borderRadius: BorderRadius.circular(14)),
-                      child: Image.network(widget.data.imgLink),
+                      child:
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: Image.network(widget.data.imgLink, fit: BoxFit.fill),),
                     ),
                   ),
                   Expanded(

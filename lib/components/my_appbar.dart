@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/auth/login.dart';
 import 'package:stinger_web/pages/favorites/favorites_page.dart';
+import 'package:stinger_web/pages/map.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
 import '../constants.dart';
@@ -23,11 +24,11 @@ class _MyAppBarState extends State<MyAppBar> {
     'Избранное',
     'Карта событий',
   ];
-  static const menuItemsPages = [
+  static final menuItemsPages = [
     ShowcasePage(),
     LogIn(),
     FavoritesPage(),
-    LogIn(),
+    GoogleMap(),
   ];
 
   @override

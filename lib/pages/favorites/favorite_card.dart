@@ -7,7 +7,7 @@ import 'package:stinger_web/models/showcase_model.dart';
 import 'package:stinger_web/requests.dart';
 
 class FavoriteCard extends StatefulWidget {
-  final Showcase data;
+  final Favorite data;
 
   const FavoriteCard({
     Key? key,
@@ -108,7 +108,11 @@ class _FavoriteCardState extends State<FavoriteCard> {
                       decoration: BoxDecoration(
                           color: semiGrey,
                           borderRadius: BorderRadius.circular(14)),
-                      child: Image.network(widget.data.imgLink),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.network(widget.data.imgLink,
+                            fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                   Expanded(

@@ -20,15 +20,15 @@ class HttpRequests {
     }
   }
 
-  Future<List<Showcase>> getFavorites() async {
+  Future<List<Favorite>> getFavorites() async {
     final response = await http.get(
-      Uri.parse(url + 'v1/api/showcase/favorite'),
+      Uri.parse(url + 'v1/api/favorite'),
       headers: {'Content-type': 'application/json'},
     );
     print(response.body);
     if (response.statusCode == 200) {
-      final result = projectsModelFromJson(utf8.decode(response.bodyBytes));
-      return result.showcase;
+      final result = favoriteModelFromJson(utf8.decode(response.bodyBytes));
+      return result.favorite;
     } else {
       throw ("getFavorites bad status code: " + response.statusCode.toString());
     }

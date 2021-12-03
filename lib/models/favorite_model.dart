@@ -26,6 +26,8 @@ class Favorite {
     required this.studyFacility,
     required this.userId,
     required this.categoryName,
+    required this.createdAt,
+    required this.imgLink,
   });
 
   String startupId;
@@ -36,6 +38,8 @@ class Favorite {
   String studyFacility;
   String userId;
   String categoryName;
+  String createdAt;
+  String imgLink;
 
   factory Favorite.fromJson(Map<String, dynamic> json) => Favorite(
     startupId: json["startup_id"],
@@ -46,5 +50,7 @@ class Favorite {
     studyFacility: json["study_facility"],
     userId: json["user_id"],
     categoryName: json["category_name"],
+    createdAt: json["created_at"],
+    imgLink: json["img_link"],
   );
 }

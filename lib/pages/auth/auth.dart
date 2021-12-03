@@ -23,7 +23,7 @@ class AuthPage extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/background.png',
+            'assets/images/backAuth.png',
             fit: BoxFit.cover,
             width: 10000,
             height: 10000,
@@ -31,7 +31,6 @@ class AuthPage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: background,
           ),
           Center(
             child: ClipRRect(
