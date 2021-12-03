@@ -34,5 +34,11 @@ class HttpRequests {
     }
   }
 
-
+  void getShowcase() async {
+    final response = await http.get(
+      Uri.parse(url + 'v1/api/showcase'),
+      headers: {'Content-type': 'application/json'},
+    );
+    print("ффввв ${response.body}");
+  }
 }

@@ -5,6 +5,8 @@ import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/showcase_model.dart';
 import 'package:stinger_web/requests.dart';
 
+import 'full_project_card.dart';
+
 class ProjectCard extends StatefulWidget {
   final Showcase data;
 
@@ -72,7 +74,9 @@ class _ProjectCardState extends State<ProjectCard> {
             )
           ]),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FullProjectCard()));
+        },
         child: Column(
           children: [
             SizedBox(

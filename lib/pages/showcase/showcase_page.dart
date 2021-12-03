@@ -24,6 +24,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
   void initState() {
     HttpRequests().getCategories().then((value) {
       if (value != null) {
+        print("фвфы $value");
         setState(() {
           showcase = value;
           isLoading = false;
