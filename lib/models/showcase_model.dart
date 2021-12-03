@@ -23,17 +23,17 @@ class ProjectsModel {
 
 class Showcase {
   Showcase({
-    required this.startupId,
-    required this.projectName,
-    required this.description,
-    required this.presentationLink,
-    required this.stage,
-    required this.studyFacility,
-    required this.userId,
-    required this.categoryName,
-    required this.imgLink,
-    required this.createdAt,
-    required this.isLiked,
+    this.startupId = '',
+    this.projectName = '',
+    this.description = '',
+    this.presentationLink = '',
+    this.stage = '',
+    this.studyFacility = '',
+    this.userId = '',
+    this.categoryName = '',
+    this.imgLink = '',
+    this.createdAt = '',
+    this.isLiked = false,
   });
 
   String startupId;

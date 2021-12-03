@@ -36,7 +36,6 @@ class HttpRequests {
   }
 
   Future<bool> postFavorites(String startup_id) async {
-    print(json.encode({"startup_id": "$startup_id"}));
     final response = await http.post(
       Uri.parse(url + 'v1/api/favorite'),
       body: json.encode({"startup_id": "$startup_id"}),
@@ -61,6 +60,17 @@ class HttpRequests {
           response.statusCode.toString());
     }
   }
+
+  // Future<List> search(String text) async {
+  //   final uri = Uri.http(url, '/v1/api/search', {'search_str': 'text'});
+  //   final response = await http.get(uri);
+  //   print(response.body);
+  //   if (response.statusCode == 200) {
+  //     //return response.body;
+  //   } else {
+  //     throw ("search bad status code: " + response.statusCode.toString());
+  //   }
+  // }
 
   void getShowcase() async {
     final response = await http.get(

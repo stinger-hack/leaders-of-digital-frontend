@@ -42,15 +42,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return isLoading
         ? Scaffold(body: Center(child: Indicator.circle))
         : Scaffold(
-        backgroundColor: background,
         body: CustomScrollView(slivers: [
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
+            padding: const EdgeInsets.only(left: 110, right: 110, bottom: 20),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                const SizedBox(height: 21),
                 MySearchField(controller: searchController),
-                const SizedBox(height: 20),
               ]),
             ),
           ),
