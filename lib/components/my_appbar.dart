@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stinger_web/pages/auth/login.dart';
 import 'package:stinger_web/pages/favorites/favorites_page.dart';
 import 'package:stinger_web/pages/map.dart';
+import 'package:stinger_web/pages/news.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
 import '../constants.dart';
@@ -26,7 +26,7 @@ class _MyAppBarState extends State<MyAppBar> {
   ];
   static final menuItemsPages = [
     ShowcasePage(),
-    LogIn(),
+    NewsPage(),
     FavoritesPage(),
     GoogleMap(),
   ];
