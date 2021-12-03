@@ -44,9 +44,9 @@ class _ShowcasePageState extends State<ShowcasePage> {
         : Scaffold(
             backgroundColor: background,
             body: CustomScrollView(slivers: [
-
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     const MyAppBar(selectedPage: 0),
@@ -66,12 +66,8 @@ class _ShowcasePageState extends State<ShowcasePage> {
                     mainAxisSpacing: 40,
                   ),
                   delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) => GestureDetector(
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      ProjectCard(data: showcase[index]))),
-                          child: ProjectCard(data: showcase[index])),
+                      (BuildContext context, int index) =>
+                          ProjectCard(data: showcase[index]),
                       childCount: showcase.length),
                   //padding: const EdgeInsets.all(15),
                 ),

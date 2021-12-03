@@ -11,7 +11,7 @@ class MySearchField extends StatefulWidget {
   _MySearchFieldState createState() => _MySearchFieldState();
 }
 
-class _MySearchFieldState extends State<MySearchField> {
+class _MySearchFieldState extends State<MySearchField>{
   @override
   Widget build(BuildContext context) {
     return Container(

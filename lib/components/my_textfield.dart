@@ -27,7 +27,7 @@ class MyTextField extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.only(left: 16),
             decoration: BoxDecoration(
-              color: const Color(0xFFF4F4F4),
+              color: textField,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(children: [
