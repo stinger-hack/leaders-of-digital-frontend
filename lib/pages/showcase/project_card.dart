@@ -1,6 +1,6 @@
-import 'dart:html';
 import 'dart:math';
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/showcase_model.dart';
@@ -61,161 +61,170 @@ class _ProjectCardState extends State<ProjectCard> {
     }
 
     var rng = Random();
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: white,
-          boxShadow: [
-            BoxShadow(
-              color: shadow,
-              offset: const Offset(0, 3),
-              blurRadius: 5,
-              spreadRadius: 1,
-            )
-          ]),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const FullProjectCard()));
-        },
-        child: Column(
-          children: [
-            SizedBox(
-              height: 24,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      widget.data.projectName,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.more_vert),
-                    color: Colors.black,
-                    iconSize: 24,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              flex: 6,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: semiGrey,
-                          borderRadius: BorderRadius.circular(14)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(14),
-                        child: Image.network(widget.data.imgLink,
-                            fit: BoxFit.fill),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              stage('Стадия:', 'Прототип'),
-                              const SizedBox(width: 30),
-                              stage('Статус:', 'В работе'),
-                            ],
-                          ),
-                          stage('В кодманде:', 'От 1 до 4'),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: const Text(
-                              'Сертификаты:',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          avardsIcon(rng.nextInt(3) + 1),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              flex: 4,
-              child: Column(
-                children: [
-                  Text(
-                    widget.data.description,
-                    maxLines: 10,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                      child: Text(
-                    '${date.day} ${formatMonth()}, ${date.year}',
-                    style: TextStyle(color: semiGrey),
-                  )),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.download_rounded,
-                        size: 20,
-                        color: semiGrey,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    child: InkWell(
-                      onTap: () {},
-                      child: GestureDetector(
-                          onTap: () {
-                            widget.data.isLiked = !widget.data.isLiked;
-                            setState(() {});
-                            HttpRequests()
-                                .postFavorites(widget.data.startupId)
-                                .then((value) {
-
-                            });
-                          },
-                          child: widget.data.isLiked
-                              ? const Icon(Icons.favorite,
-                                  size: 20, color: Colors.red)
-                              : const Icon(Icons.favorite_border,
-                                  size: 20, color: Colors.red)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+    return OpenContainer(
+      transitionType: ContainerTransitionType.fade,
+      openBuilder: (BuildContext context, VoidCallback _) {
+        return const FullProjectCard();
+      },
+      closedElevation: 6.0,
+      closedShape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+            Radius.circular(28.0)
         ),
       ),
+      closedColor: Theme.of(context).colorScheme.secondary,
+      closedBuilder: (BuildContext context, VoidCallback openContainer) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: white,
+              boxShadow: [
+                BoxShadow(
+                  color: shadow,
+                  offset: const Offset(0, 3),
+                  blurRadius: 5,
+                  spreadRadius: 1,
+                )
+              ]),
+          child: Column(
+              children: [
+                SizedBox(
+                  height: 24,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.data.projectName,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.more_vert),
+                        color: Colors.black,
+                        iconSize: 24,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Expanded(
+                  flex: 6,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: semiGrey,
+                              borderRadius: BorderRadius.circular(14)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: Image.network(widget.data.imgLink,
+                                fit: BoxFit.fill),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  stage('Стадия:', 'Прототип'),
+                                  const SizedBox(width: 30),
+                                  stage('Статус:', 'В работе'),
+                                ],
+                              ),
+                              stage('В кодманде:', 'От 1 до 4'),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: const Text(
+                                  'Сертификаты:',
+                                  style: TextStyle(
+                                      fontSize: 14, fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              avardsIcon(rng.nextInt(3) + 1),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    children: [
+                      Text(
+                        widget.data.description,
+                        maxLines: 10,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                    height: 20,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: Text(
+                                '${date.day} ${formatMonth()}, ${date.year}',
+                                style: TextStyle(color: semiGrey),
+                              )),
+                          Container(
+                            width: 20,
+                            height: 20,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.download_rounded,
+                                size: 20,
+                                color: semiGrey,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Container(
+                              width: 20,
+                              height: 20,
+                              child: InkWell(
+                                onTap: () {},
+                                child: GestureDetector(
+                                    onTap: () {
+                                      widget.data.isLiked = !widget.data.isLiked;
+                                      setState(() {});
+                                      HttpRequests()
+                                          .postFavorites(widget.data.startupId)
+                                          .then((value) {
+
+                                      });
+                                    },
+                                    child: widget.data.isLiked
+                                        ? const Icon(Icons.favorite,
+                                        size: 20, color: Colors.red)
+                                        : const Icon(Icons.favorite_border,
+                                        size: 20, color: Colors.red)),
+                              )
+                          )
+                        ]
+                    )
+                )
+              ]
+          )
+        );
+      }
     );
   }
 

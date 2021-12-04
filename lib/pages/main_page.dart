@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/favorites/favorites_page.dart';
 import 'package:stinger_web/pages/map/map.dart';
+import 'package:stinger_web/pages/notifications.dart';
 import 'package:stinger_web/pages/showcase/full_project_card.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
 
@@ -23,7 +24,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   @override
   void initState() {
-    tabController = TabController(length: widget.isAdmin ? 5 : 4, vsync: this);
+    tabController = TabController(length: widget.isAdmin ? 6 : 5, vsync: this);
     super.initState();
   }
 
@@ -67,7 +68,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                   tabBarTab("Новости"),
                                   tabBarTab("Избранное"),
                                   if (widget.isAdmin) tabBarTab("Мои проекты"),
-                                  tabBarTab("События")
+                                  tabBarTab("События"),
+                                  Container()
                                 ]
                             )
                         ),
@@ -148,11 +150,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                   child: TabBarView(
                       controller: tabController,
                       children: [
-                        ShowcasePage(),
-                        NewsPage(),
-                        FavoritesPage(),
-                        if (widget.isAdmin) MyProjectsPage(),
-                        GoogleMap()
+                        const ShowcasePage(),
+                        const NewsPage(),
+                        const FavoritesPage(),
+                        if (widget.isAdmin) const MyProjectsPage(),
+                        const GoogleMap(),
+                        NotificationsPage()
             ]
                   )
               )

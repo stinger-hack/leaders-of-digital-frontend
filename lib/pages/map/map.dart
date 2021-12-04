@@ -65,39 +65,42 @@ class _GoogleMapState extends State<GoogleMap> {
       body: Stack(
         children: [
           HtmlElementView(viewType: htmlId),
-          if (showInfo)
           Positioned(
               top: 30,
               left: 20,
-              child: Column(
-                  children: [
-                    const MapSearch(),
-                    const SizedBox(height: 12),
-                    const DemoDay(),
-                    const SizedBox(height: 20),
-                    Container(
-                      height: 44,
-                        width: 210,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff009A96),
-                            borderRadius: BorderRadius.circular(22),
-                            boxShadow: const [BoxShadow(
-                                offset: Offset(0, 0),
-                                blurRadius: 0,
-                                color: Color.fromRGBO(0, 0, 0, 0.1)
-                            )]
-                        ),
-                      child: const Text(
-                        "Создать Demo day",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.white
-                        )
+              child: AnimatedOpacity(
+                opacity: showInfo ? 1 : 0,
+                duration: const Duration(seconds: 1),
+                child: Column(
+                    children: [
+                      const MapSearch(),
+                      const SizedBox(height: 12),
+                      const DemoDay(),
+                      const SizedBox(height: 20),
+                      Container(
+                          height: 44,
+                          width: 210,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xff009A96),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: const [BoxShadow(
+                                  offset: Offset(0, 0),
+                                  blurRadius: 0,
+                                  color: Color.fromRGBO(0, 0, 0, 0.1)
+                              )]
+                          ),
+                          child: const Text(
+                              "Создать Demo day",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Colors.white
+                              )
+                          )
                       )
-                    )
-                  ]
+                    ]
+                )
               )
           )
         ]

@@ -40,35 +40,38 @@ class _ShowcasePageState extends State<ShowcasePage> {
   Widget build(BuildContext context) {
     return isLoading
         ? Center(child: Indicator.circle)
-        : Column(
-        children: [
-          MySearchField(controller: searchController),
-          const SizedBox(height: 40),
-          Expanded(
-              child: AnimationLimiter(
-                  child: GridView.builder(
-                      itemCount: showcase.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 590/428,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 40,
-                        mainAxisSpacing: 40,
-                      ),
-                      itemBuilder: (context, index) => AnimationConfiguration.staggeredGrid(
-                        columnCount: 2,
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        child: ScaleAnimation(
-                          scale: 0.5,
-                          child: FadeInAnimation(
-                              child: ProjectCard(data: showcase[index])
-                          )
+        : Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 110),
+      child: Column(
+          children: [
+            MySearchField(controller: searchController),
+            const SizedBox(height: 40),
+            Expanded(
+                child: AnimationLimiter(
+                    child: GridView.builder(
+                        itemCount: showcase.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: 590/428,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 40,
+                          mainAxisSpacing: 40,
+                        ),
+                        itemBuilder: (context, index) => AnimationConfiguration.staggeredGrid(
+                            columnCount: 2,
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            child: ScaleAnimation(
+                                scale: 0.5,
+                                child: FadeInAnimation(
+                                    child: ProjectCard(data: showcase[index])
+                                )
+                            )
                         )
-                      )
-                  )
-              )
-          )
-        ]
+                    )
+                )
+            )
+          ]
+      )
     );
   }
 }

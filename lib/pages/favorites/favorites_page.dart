@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
 import 'package:stinger_web/components/my_searchfield.dart';
 import 'package:stinger_web/models/favorite_model.dart';
@@ -40,37 +41,39 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? Scaffold(body: Center(child: Indicator.circle))
-        : Scaffold(
-        backgroundColor: background,
-        body: CustomScrollView(slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 110, vertical: 40),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                const SizedBox(height: 21),
-                MySearchField(controller: searchController),
-                const SizedBox(height: 20),
-              ]),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 110),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 1.5,
-                crossAxisCount: 2,
-                crossAxisSpacing: 40,
-                mainAxisSpacing: 40,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) => GestureDetector(
-                      onTap: () {},
-                      child: FavoriteCard(data: favorite[index])),
-                  childCount: favorite.length),
-              //padding: const EdgeInsets.all(15),
-            ),
-          )
-        ]));
+        ? Center(child: Indicator.circle)
+        : Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 110),
+        child: Column(
+            children: [
+              MySearchField(controller: searchController),
+              const SizedBox(height: 40),
+              Expanded(
+                  child: AnimationLimiter(
+                      child: GridView.builder(
+                          itemCount: favorite.length,
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 590/428,
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 40,
+                            mainAxisSpacing: 40,
+                          ),
+                          itemBuilder: (context, index) => AnimationConfiguration.staggeredGrid(
+                              columnCount: 2,
+                              position: index,
+                              duration: const Duration(milliseconds: 375),
+                              child: ScaleAnimation(
+                                  scale: 0.5,
+                                  child: FadeInAnimation(
+                                      child: FavoriteCard(data: favorite[index])
+                                  )
+                              )
+                          )
+                      )
+                  )
+              )
+            ]
+        )
+    );
   }
 }

@@ -21,41 +21,40 @@ class _MySearchFieldState extends State<MySearchField>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.5,
-          height: 50,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: shadow,
-                blurRadius: 1,
-                spreadRadius: 1,
-                offset: const Offset(0, 1),
+        Expanded(
+          child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: shadow,
+                    blurRadius: 1,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
               ),
-            ],
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Center(
-            child: TextField(
-              controller: widget.controller,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: white,
-                labelText: 'Поиск',
-                labelStyle: TextStyle(color: semiGrey),
-                prefixIcon: const Icon(Icons.search),
-                hoverColor: white,
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: white),
-                  borderRadius: BorderRadius.circular(20),
+              child: TextField(
+                controller: widget.controller,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: white,
+                  labelText: 'Поиск',
+                  labelStyle: TextStyle(color: semiGrey),
+                  prefixIcon: const Icon(Icons.search),
+                  hoverColor: white,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: mainGreen),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: mainGreen),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-          ),
+              )
+          )
         ),
         const SizedBox(width: 40),
         GestureDetector(
@@ -74,6 +73,7 @@ class _MySearchFieldState extends State<MySearchField>{
                     )]
                 ),
                 child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset("images/filter.png"),
                       const SizedBox(width: 6),

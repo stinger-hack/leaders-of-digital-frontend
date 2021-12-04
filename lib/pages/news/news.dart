@@ -46,85 +46,89 @@ class _NewsPageState extends State<NewsPage> {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: background,
-        body: Padding(
-            padding: const EdgeInsets.only(top: 40, left: 110, right: 110),
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-                Expanded(
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 1.2,
-                              crossAxisSpacing: 40,
-                              mainAxisSpacing: 40,
-                              crossAxisCount: 2),
-                      itemCount: newsModels.length,
-                      itemBuilder: (context, index) => Container(
+  Widget build(BuildContext context) => Padding(
+      padding: const EdgeInsets.only(top: 40, left: 110, right: 110),
+      child: Column(
+        children: [
+          const SizedBox(height: 40),
+          Expanded(
+            child: GridView.builder(
+                gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.2,
+                    crossAxisSpacing: 40,
+                    mainAxisSpacing: 40,
+                    crossAxisCount: 2),
+                itemCount: newsModels.length,
+                itemBuilder: (context, index) => Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: shadow,
+                            offset: const Offset(0, 2),
+                            blurRadius: 2,
+                            spreadRadius: 1,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Column(children: [
+                      Container(
+                          height: 76,
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: shadow,
-                                  offset: const Offset(0, 2),
-                                  blurRadius: 2,
-                                  spreadRadius: 1,
-                                )
-                              ],
                               borderRadius: BorderRadius.circular(20)),
+                          child: Row(children: [
+                            CircleAvatar(
+                                child:
+                                Image.asset(newsModels[index].url!)),
+                            const SizedBox(width: 16),
+                            Column(children: [
+                              Text(newsModels[index].name!,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      color: Color(0xff25222C))),
+                              const SizedBox(height: 1),
+                              Text(
+                                  "сегодня в ${newsModels[index].time!.hour}:${newsModels[index].time!.minute}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                      color: Color(0xff929095)))
+                            ]),
+                            const Spacer(),
+                            GestureDetector(
+                                child: Image.asset(
+                                    "images/popup_button.png"))
+                          ])),
+                      Image.asset(newsModels[index].image!, height: 252),
+                      const SizedBox(height: 20),
+                      Padding(
+                          padding: const EdgeInsets.all(20),
                           child: Column(children: [
-                            Container(
-                                height: 76,
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Row(children: [
-                                  CircleAvatar(
-                                      child:
-                                          Image.asset(newsModels[index].url!)),
-                                  const SizedBox(width: 16),
-                                  Column(children: [
-                                    Text(newsModels[index].name!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                            color: Color(0xff25222C))),
-                                    const SizedBox(height: 1),
-                                    Text(
-                                        "сегодня в ${newsModels[index].time!.hour}:${newsModels[index].time!.minute}",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                            color: Color(0xff929095)))
-                                  ]),
-                                  const Spacer(),
-                                  GestureDetector(
-                                      child: Image.asset(
-                                          "images/popup_button.png"))
-                                ])),
-                            Image.asset(newsModels[index].image!, height: 252),
-                            const SizedBox(height: 20),
-                            Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(children: [
-                                  Text(newsModels[index].header!,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 22,
-                                          color: Color(0xff25222C))),
-                                  const SizedBox(height: 6),
-                                  Text(newsModels[index].body!,
-                                      style: const TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xff66646B)))
-                                ]))
-                          ]))),
+                            Text(
+                                newsModels[index].header!,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22,
+                                    color: Color(0xff25222C))),
+                            const SizedBox(height: 6),
+                            Text(newsModels[index].body!,
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff66646B)))
+                          ]
+                          )
+                      )
+                    ]
+                    )
                 )
-              ],
-            )),
-      );
+            )
+          )
+        ]
+      )
+  );
 }
