@@ -46,7 +46,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         padding: const EdgeInsets.symmetric(horizontal: 110),
         child: Column(
             children: [
-              MySearchField(controller: searchController),
+              MySearchField(controller: searchController, isFavorite: true),
               const SizedBox(height: 40),
               Expanded(
                   child: AnimationLimiter(

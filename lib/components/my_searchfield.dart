@@ -1,13 +1,19 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:stinger_web/create_project/create_project_page.dart';
+import 'package:stinger_web/pages/favorites/compare.dart';
 
 import '../constants.dart';
 
 class MySearchField extends StatefulWidget {
   final TextEditingController controller;
+  final bool isFavorite;
 
-  const MySearchField({Key? key, required this.controller}) : super(key: key);
+  const MySearchField({
+    Key? key,
+    required this.controller,
+    this.isFavorite = false
+  }) : super(key: key);
 
   @override
   _MySearchFieldState createState() => _MySearchFieldState();
@@ -37,6 +43,9 @@ class _MySearchFieldState extends State<MySearchField>{
               ),
               child: TextField(
                 controller: widget.controller,
+                onChanged: (text) {
+
+                },
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: white,
@@ -93,13 +102,13 @@ class _MySearchFieldState extends State<MySearchField>{
         OpenContainer(
           transitionType: _transitionType,
           openBuilder: (BuildContext context, VoidCallback _) {
-            return const CreateProjectPage();
+            return widget.isFavorite ? const ComparePage() : const CreateProjectPage();
           },
           closedElevation: 6.0,
           closedShape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(28.0)
-            ),
+            )
           ),
           closedColor: Theme.of(context).colorScheme.secondary,
           closedBuilder: (BuildContext context, VoidCallback openContainer) {
@@ -116,9 +125,9 @@ class _MySearchFieldState extends State<MySearchField>{
                         color: Color.fromRGBO(0, 0, 0, 0.05)
                     )]
                 ),
-                child: const Text(
-                    "Загрузить",
-                    style: TextStyle(
+                child: Text(
+                    widget.isFavorite ? "Сравнить" : "Загрузить",
+                    style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                         color: Color(0xff25222C)

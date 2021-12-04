@@ -74,10 +74,18 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                             )
                         ),
                         GestureDetector(
-                            onTap: () => setState(() => _index = 6),
-                            child: SizedBox(
+                            onTap: () => setState(() {
+                              tabController!.animateTo(
+                                  6,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.ease
+                              );
+                              _index = 6;
+                            }),
+                            child: Container(
                                 height: 46,
                                 width: 60,
+                                color: Colors.transparent,
                                 child: Stack(
                                     children: [
                                       Positioned(
