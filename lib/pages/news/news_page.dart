@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/news_model.dart';
 
+import '../../requests.dart';
+
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
 
@@ -10,40 +12,56 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  List<NewsModel> newsModels = [
-    NewsModel(
-        url: "images/sc.png",
-        name: "SC - team",
-        image: "images/sc_image.png",
-        header: "Встречайте победителей!",
-        body:
-            "На хакатоне «Финансы. Банкинг. Страхование» были представлены 8 задач от следующих кейсодержателей: Госкорпорации «Росатом», Министерства финансов РФ, Accenture, Balance Platform, ВТБ, ПСБ, Международного аэропорта Шереметьево и Министерства...",
-        time: DateTime.parse("2021-12-04 21:00:00Z")),
-    NewsModel(
-        url: "images/smart_car.png",
-        name: "Smart Car",
-        image: "images/smart_car_image.png",
-        header: "Борьба с изменением климата окупает себя...",
-        body:
-            "Транспортно-логистические компании, которые реализуют планы по сокращению выбросов, получили значительный рост общей годовой прибыли акционеров. Но для обеспечения экономической устойчивости компаниям следует включить зеленую повестку в свои...",
-        time: DateTime.parse("2021-12-04 16:32:00Z")),
-    NewsModel(
-        url: "assets/images/поколение_победителей.png",
-        name: "Поколение победителей",
-        image: "assets/images/поколение_победителей_image.png",
-        header: "Забудьте о пробках, есть решение!",
-        body:
-            "На хакатоне «Финансы. Банкинг. Страхование» были представлены 8 задач от следующих кейсодержателей: Госкорпорации «Росатом», Министерства финансов РФ, Accenture, Balance Platform, ВТБ, ПСБ, Международного аэропорта Шереметьево и Министерства финансов Рес...",
-        time: DateTime.parse("2021-12-04 21:00:00Z")),
-    NewsModel(
-        url: "assets/images/огибая_планету.png",
-        name: "Огибая_планету",
-        image: "assets/images/огибая_планету_image.png",
-        header: "Без опозданий",
-        body:
-            "Транспортно-логистические компании, которые реализуют планы по сокращению выбросов, получили значительный рост общей годовой прибыли акционеров. Но для обеспечения экономической устойчивости компаниям следует включить зеленую повестку в свои...",
-        time: DateTime.parse("2021-12-04 16:32:00Z"))
-  ];
+  bool isLoading = true;
+  var searchController = TextEditingController();
+  List<NewsModel> news = [];
+
+  String formatMonth(date) {
+    switch (date.month) {
+      case 1:
+        return 'Января';
+      case 2:
+        return 'Февраля';
+      case 3:
+        return 'Марта';
+      case 4:
+        return 'Апрелья';
+      case 5:
+        return 'Мая';
+      case 6:
+        return 'Июня';
+      case 7:
+        return 'Июля';
+      case 8:
+        return 'Августа';
+      case 9:
+        return 'Сентября';
+      case 10:
+        return 'Октября';
+      case 11:
+        return 'Ноября';
+      case 12:
+        return 'Декабря';
+      default:
+        return '';
+    }
+  }
+
+  @override
+  void initState() {
+    HttpRequests().getNews().then((value) {
+      if (value != null) {
+        setState(() {
+          news = value;
+          isLoading = false;
+        });
+      } else {
+        var snackBar = const SnackBar(content: Text("Что-то пошло не так"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Stack(children: [
@@ -59,7 +77,7 @@ class _NewsPageState extends State<NewsPage> {
                               crossAxisSpacing: 40,
                               mainAxisSpacing: 40,
                               crossAxisCount: 2),
-                      itemCount: newsModels.length,
+                      itemCount: news.length,
                       itemBuilder: (context, index) => Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
@@ -82,21 +100,29 @@ class _NewsPageState extends State<NewsPage> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Row(children: [
                                   CircleAvatar(
-                                      child:
-                                          Image.asset(newsModels[index].url!)),
+                                      child: Image.asset(
+                                          'assets/images/team${index + 1}.png')),
                                   const SizedBox(width: 16),
                                   Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(newsModels[index].name!,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Color(0xff25222C))),
+                                        FittedBox(
+                                          child: Text(news[index].newsHeader,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                  color: Color(0xff25222C))),
+                                        ),
                                         const SizedBox(height: 1),
                                         Text(
-                                            "сегодня в ${newsModels[index].time!.hour}:${newsModels[index].time!.minute}",
+                                            DateTime.parse(
+                                                        news[index].createdAt)
+                                                    .day
+                                                    .toString() +
+                                                ' ' +
+                                                formatMonth(DateTime.parse(
+                                                    news[index].createdAt)),
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 12,
@@ -109,20 +135,22 @@ class _NewsPageState extends State<NewsPage> {
                                 ])),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(14),
-                              child: Image.asset(newsModels[index].image!,
-                                  height: 252),
+                              child: Image.network(
+                                news[index].imgLink,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             const SizedBox(height: 20),
                             Padding(
                                 padding: const EdgeInsets.all(20),
                                 child: Column(children: [
-                                  Text(newsModels[index].header!,
+                                  Text(news[index].newsHeader,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 22,
                                           color: Color(0xff25222C))),
                                   const SizedBox(height: 6),
-                                  Text(newsModels[index].body!,
+                                  Text(news[index].newsText,
                                       style: const TextStyle(
                                           fontSize: 18,
                                           color: Color(0xff66646B)))

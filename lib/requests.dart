@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'models/favorite_model.dart';
+import 'models/news_model.dart';
 import 'models/showcase_model.dart';
 
 class HttpRequests {
@@ -35,6 +36,20 @@ class HttpRequests {
     }
   }
 
+  Future<List<NewsModel>> getNews() async {
+    final response = await http.get(
+      Uri.parse(url + 'v1/api/feed'),
+      headers: {'Content-type': 'application/json'},
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      final result = newsModelFromJson(utf8.decode(response.bodyBytes));
+      return result;
+    } else {
+      throw ("getNews bad status code: " + response.statusCode.toString());
+    }
+  }
+
   Future<bool> postFavorites(String startup_id) async {
     final response = await http.post(
       Uri.parse(url + 'v1/api/favorite'),
@@ -60,6 +75,7 @@ class HttpRequests {
           response.statusCode.toString());
     }
   }
+
 
   // Future<List> search(String text) async {
   //   final uri = Uri.http(url, '/v1/api/search', {'search_str': 'text'});
