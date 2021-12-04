@@ -66,17 +66,18 @@ class _MySearchFieldState extends State<MySearchField>{
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(20),
                     boxShadow: const [BoxShadow(
                         offset: Offset(0, 2),
-                        blurRadius: 10,
-                        color: Color.fromRGBO(0, 0, 0, 0.05)
+                        blurRadius: 2,
+                        spreadRadius: 1,
+                        color: Color.fromRGBO(0, 0, 0, 0.1)
                     )]
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset("images/filter.png"),
-                      const SizedBox(width: 6),
                       const Text(
                           "Фильтры",
                           style: TextStyle(
