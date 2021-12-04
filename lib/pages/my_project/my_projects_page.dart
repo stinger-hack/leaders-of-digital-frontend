@@ -6,6 +6,9 @@ import '../../constants.dart';
 import '../../requests.dart';
 import 'my_projects_card.dart';
 
+/**
+ * Экран курируемых проектов
+ */
 class MyProjectsPage extends StatefulWidget {
   const MyProjectsPage({Key? key}) : super(key: key);
 

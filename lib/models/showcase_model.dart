@@ -7,7 +7,7 @@ import 'dart:convert';
 
 ProjectsModel projectsModelFromJson(String str) => ProjectsModel.fromJson(json.decode(str));
 
-
+/// Модель витрины
 class ProjectsModel {
   ProjectsModel({
     required this.showcase,

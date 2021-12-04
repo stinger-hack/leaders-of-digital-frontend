@@ -2,14 +2,15 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
-import 'package:stinger_web/components/my_searchfield.dart';
 import 'package:stinger_web/create_project/create_project_page.dart';
 import 'package:stinger_web/models/showcase_model.dart';
 import 'package:stinger_web/pages/showcase/project_card.dart';
 import 'package:stinger_web/requests.dart';
-
 import '../../constants.dart';
 
+/**
+ * Заглавный экран витрины
+ */
 class ShowcasePage extends StatefulWidget {
   const ShowcasePage({Key? key}) : super(key: key);
 

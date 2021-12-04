@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
+/**
+ * Компоненты: поля ввода
+ */
 class MyTextField extends StatelessWidget {
   final String txt;
   final String icon;

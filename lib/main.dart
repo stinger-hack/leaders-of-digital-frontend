@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stinger_web/pages/auth/login.dart';
 
+/// Точка запуска приложения
 void main() {
-  //FluroRouterClass.setupRouter();
   runApp(MaterialApp(
-      //onGenerateRoute: FluroRouterClass.router.generator,
       theme: ThemeData(
         fontFamily: 'Montserrat',
       ),

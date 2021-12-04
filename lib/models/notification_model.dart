@@ -1,3 +1,4 @@
+/// Модель уведомлений
 class NotificationModel {
   final String? url;
   final String? name;

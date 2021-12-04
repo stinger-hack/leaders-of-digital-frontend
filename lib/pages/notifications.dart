@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:stinger_web/components/my_button.dart';
 import 'package:stinger_web/models/notification_model.dart';
 
+/**
+ * Уведомления
+ */
 class NotificationsPage extends StatelessWidget {
   NotificationsPage({Key? key}) : super(key: key);
 

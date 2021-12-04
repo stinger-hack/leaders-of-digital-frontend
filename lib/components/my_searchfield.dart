@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stinger_web/create_project/create_project_page.dart';
 import 'package:stinger_web/pages/favorites/compare.dart';
-
 import '../constants.dart';
 
+/**
+ * Компоненты: поле поиска
+ */
 class MySearchField extends StatefulWidget {
   final TextEditingController controller;
   final bool isFavorite;

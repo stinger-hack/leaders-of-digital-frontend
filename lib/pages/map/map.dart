@@ -10,6 +10,9 @@ import '../../constants.dart';
 import 'demo_day.dart';
 import 'map_search.dart';
 
+/**
+ * Карта встреч
+ */
 class GoogleMap extends StatefulWidget {
   const GoogleMap({Key? key}) : super(key: key);
 

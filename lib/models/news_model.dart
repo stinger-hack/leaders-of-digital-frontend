@@ -3,7 +3,7 @@ import 'dart:convert';
 List<NewsModel> newsModelFromJson(String str) => List<NewsModel>.from(json.decode(str).map((x) => NewsModel.fromJson(x)));
 
 String newsModelToJson(List<NewsModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
+/// Модель новостей
 class NewsModel {
   NewsModel({
     required this.newsId,

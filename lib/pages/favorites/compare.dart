@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/**
+ * Экран сравнений
+ */
 class ComparePage extends StatelessWidget {
   const ComparePage({Key? key}) : super(key: key);
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
+/**
+ * Компоненты: Кнопки
+ */
 class MyButton extends StatelessWidget {
   MyButton({required this.txt, required this.onTap});
 

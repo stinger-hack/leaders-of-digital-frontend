@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Кнопка скачивания файлов
 class MyDownload extends StatelessWidget {
   const MyDownload({Key? key}) : super(key: key);
 

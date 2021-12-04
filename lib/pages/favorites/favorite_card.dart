@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/favorite_model.dart';
 
+
+/**
+ * Карточка избранного проекта
+ */
 class FavoriteCard extends StatefulWidget {
   final Favorite data;
 

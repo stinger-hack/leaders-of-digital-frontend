@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:stinger_web/components/my_button.dart';
 import 'package:file_picker/file_picker.dart';
@@ -7,6 +5,9 @@ import 'package:stinger_web/components/my_snackbar.dart';
 import 'package:stinger_web/requests.dart';
 import '../constants.dart';
 
+/**
+ * Форма добавления\импорта проекта
+ */
 class CreateProjectPage extends StatefulWidget {
   const CreateProjectPage({Key? key}) : super(key: key);
 

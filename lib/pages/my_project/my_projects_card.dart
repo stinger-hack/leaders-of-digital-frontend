@@ -5,6 +5,9 @@ import 'package:stinger_web/pages/showcase/full_project_card.dart';
 
 import '../../constants.dart';
 
+/**
+ * Карточка проекта
+ */
 class MyProjectCard extends StatefulWidget {
   final Showcase data;
 

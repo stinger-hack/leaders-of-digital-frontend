@@ -1,13 +1,14 @@
 import 'dart:math';
-
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/showcase_model.dart';
 import 'package:stinger_web/requests.dart';
-
 import 'full_project_card.dart';
 
+/**
+ * Карточка витрины
+ */
 class ProjectCard extends StatefulWidget {
   final Showcase data;
 

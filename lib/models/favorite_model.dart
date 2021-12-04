@@ -3,6 +3,7 @@ import 'dart:convert';
 
 FavoriteModel favoriteModelFromJson(String str) => FavoriteModel.fromJson(json.decode(str));
 
+/// Модель избранных
 class FavoriteModel {
   FavoriteModel({
     required this.favorite,

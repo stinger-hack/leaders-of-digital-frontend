@@ -8,6 +8,9 @@ import 'package:stinger_web/pages/showcase/showcase_page.dart';
 import 'my_project/my_projects_page.dart';
 import 'news/news_page.dart';
 
+/**
+ * Панель навигации
+ */
 class MainPage extends StatefulWidget {
   const MainPage({Key? key, this.isAdmin = false}) : super(key: key);
 

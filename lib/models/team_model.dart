@@ -1,3 +1,4 @@
+/// Модель команды
 class TeamModel {
   final String? url;
   final String? name;

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/**
+ * Экран Demo Day
+ */
 class DemoDay extends StatelessWidget {
   const DemoDay({Key? key}) : super(key: key);
 

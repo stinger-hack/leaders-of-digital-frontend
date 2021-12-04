@@ -3,6 +3,9 @@ import 'package:stinger_web/components/my_download.dart';
 import 'package:stinger_web/models/similar_model.dart';
 import 'package:stinger_web/models/team_model.dart';
 
+/**
+ * Mock-объекты подробного просмотра карточки витрины
+ */
 class FullProjectCard extends StatefulWidget {
   const FullProjectCard({Key? key}) : super(key: key);
 

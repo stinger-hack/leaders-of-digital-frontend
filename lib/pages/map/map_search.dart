@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/**
+ * Поиск на карте
+ */
 class MapSearch extends StatefulWidget {
   const MapSearch({Key? key}) : super(key: key);
 

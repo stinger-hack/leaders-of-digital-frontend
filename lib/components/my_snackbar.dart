@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 
+/// Снэкбар
 class MySnackbar {
   static void show(context, String text) {
     var snackBar = SnackBar(

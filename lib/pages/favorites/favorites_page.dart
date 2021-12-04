@@ -3,13 +3,12 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:stinger_web/components/my_circular_indicator.dart';
 import 'package:stinger_web/components/my_searchfield.dart';
 import 'package:stinger_web/models/favorite_model.dart';
-import 'package:stinger_web/models/showcase_model.dart';
-import 'package:stinger_web/pages/showcase/project_card.dart';
-
-import '../../constants.dart';
 import '../../requests.dart';
 import 'favorite_card.dart';
 
+/**
+ * Экран витрины
+ */
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key}) : super(key: key);
 

@@ -11,6 +11,10 @@ import '../main_page.dart';
 import 'auth.dart';
 import 'forgot_passwort.dart';
 
+
+/**
+ * Экран авторизации
+ */
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
 

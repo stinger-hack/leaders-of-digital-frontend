@@ -7,6 +7,9 @@ import 'package:stinger_web/models/news_model.dart';
 
 import '../../requests.dart';
 
+/**
+ * Экран новостной ленты
+ */
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
 
