@@ -51,6 +51,56 @@ class MyButton extends StatelessWidget {
   }
 }
 
+class MyGreenButton extends StatelessWidget {
+  MyGreenButton({required this.txt, required this.onTap});
+
+  final String txt;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: shadow,
+            offset: const Offset(0, 2),
+            blurRadius: 2,
+            spreadRadius: 1,
+          )
+        ],
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 20.0,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          primary: mainGreen,
+        ),
+        onPressed: onTap,
+        child: Center(
+          child: FittedBox(
+            child: Text(
+              txt,
+              style: const TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 22,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class MyOutlinedButton extends StatelessWidget {
   MyOutlinedButton({required this.txt, required this.onTap});
 

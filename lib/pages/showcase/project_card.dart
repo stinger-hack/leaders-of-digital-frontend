@@ -62,33 +62,30 @@ class _ProjectCardState extends State<ProjectCard> {
 
     var rng = Random();
     return OpenContainer(
-      transitionType: ContainerTransitionType.fade,
-      openBuilder: (BuildContext context, VoidCallback _) {
-        return const FullProjectCard();
-      },
-      closedElevation: 6.0,
-      closedShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-            Radius.circular(28.0)
+        transitionType: ContainerTransitionType.fade,
+        openBuilder: (BuildContext context, VoidCallback _) {
+          return const FullProjectCard();
+        },
+        closedElevation: 6.0,
+        closedShape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(28.0)),
         ),
-      ),
-      closedColor: Theme.of(context).colorScheme.secondary,
-      closedBuilder: (BuildContext context, VoidCallback openContainer) {
-        return Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: white,
-              boxShadow: [
-                BoxShadow(
-                  color: shadow,
-                  offset: const Offset(0, 3),
-                  blurRadius: 5,
-                  spreadRadius: 1,
-                )
-              ]),
-          child: Column(
-              children: [
+        closedColor: Theme.of(context).colorScheme.secondary,
+        closedBuilder: (BuildContext context, VoidCallback openContainer) {
+          return Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: shadow,
+                      offset: const Offset(0, 3),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                    )
+                  ]),
+              child: Column(children: [
                 SizedBox(
                   height: 24,
                   child: Row(
@@ -145,11 +142,13 @@ class _ProjectCardState extends State<ProjectCard> {
                               ),
                               stage('В кодманде:', 'От 1 до 4'),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: const Text(
                                   'Сертификаты:',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.w600),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                               avardsIcon(rng.nextInt(3) + 1),
@@ -180,9 +179,9 @@ class _ProjectCardState extends State<ProjectCard> {
                         children: [
                           Expanded(
                               child: Text(
-                                '${date.day} ${formatMonth()}, ${date.year}',
-                                style: TextStyle(color: semiGrey),
-                              )),
+                            '${date.day} ${formatMonth()}, ${date.year}',
+                            style: TextStyle(color: semiGrey),
+                          )),
                           Container(
                             width: 20,
                             height: 20,
@@ -203,29 +202,33 @@ class _ProjectCardState extends State<ProjectCard> {
                                 onTap: () {},
                                 child: GestureDetector(
                                     onTap: () {
-                                      widget.data.isLiked = !widget.data.isLiked;
-                                      setState(() {});
-                                      HttpRequests()
-                                          .postFavorites(widget.data.startupId)
-                                          .then((value) {
-
-                                      });
+                                      widget.data.isLiked
+                                          ? HttpRequests()
+                                              .deleteFavorite(
+                                                  widget.data.startupId)
+                                              .then((value) {
+                                              widget.data.isLiked =
+                                                  !widget.data.isLiked;
+                                              setState(() {});
+                                            })
+                                          : HttpRequests()
+                                              .postFavorite(
+                                                  widget.data.startupId)
+                                              .then((value) {
+                                              widget.data.isLiked =
+                                                  !widget.data.isLiked;
+                                              setState(() {});
+                                            });
                                     },
                                     child: widget.data.isLiked
                                         ? const Icon(Icons.favorite,
-                                        size: 20, color: Colors.red)
+                                            size: 20, color: Colors.red)
                                         : const Icon(Icons.favorite_border,
-                                        size: 20, color: Colors.red)),
-                              )
-                          )
-                        ]
-                    )
-                )
-              ]
-          )
-        );
-      }
-    );
+                                            size: 20, color: Colors.red)),
+                              ))
+                        ]))
+              ]));
+        });
   }
 
   stage(String step, String info) => FittedBox(

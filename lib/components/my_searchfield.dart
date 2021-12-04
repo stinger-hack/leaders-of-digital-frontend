@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stinger_web/create_project/create_project_page.dart';
 import 'package:stinger_web/pages/favorites/compare.dart';
 
@@ -21,7 +22,19 @@ class MySearchField extends StatefulWidget {
 
 class _MySearchFieldState extends State<MySearchField>{
   final ContainerTransitionType _transitionType = ContainerTransitionType.fade;
+  SharedPreferences? preferences;
+bool isAdmin = false;
+  getData() async {
+    preferences = await SharedPreferences.getInstance();
+    isAdmin = preferences!.getBool('admin')!;
+    setState(() {});
+  }
 
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -74,10 +87,11 @@ class _MySearchFieldState extends State<MySearchField>{
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(20),
                     boxShadow: const [BoxShadow(
                         offset: Offset(0, 2),
-                        blurRadius: 10,
+                        blurRadius: 2,
+                        spreadRadius: 1,
                         color: Color.fromRGBO(0, 0, 0, 0.05)
                     )]
                 ),
@@ -98,8 +112,8 @@ class _MySearchFieldState extends State<MySearchField>{
                 )
             )
         ),
-        const SizedBox(width: 40),
-        OpenContainer(
+        if(isAdmin) const SizedBox(width: 40),
+        if(isAdmin) OpenContainer(
           transitionType: _transitionType,
           openBuilder: (BuildContext context, VoidCallback _) {
             return widget.isFavorite ? const ComparePage() : const CreateProjectPage();

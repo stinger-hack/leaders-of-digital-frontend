@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stinger_web/components/my_button.dart';
 import 'package:stinger_web/components/my_textfield.dart';
 import 'package:stinger_web/pages/showcase/showcase_page.dart';
@@ -20,9 +21,20 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
   bool canGetName = false, canGetPassword = false;
   String errorName = "", errorPassword = "";
+  SharedPreferences? preferences;
 
   TextEditingController email = TextEditingController(),
       password = TextEditingController();
+
+  getData() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   void checkCanGetPassword(String value) {
     if (value.isNotEmpty) {
@@ -37,6 +49,8 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
       });
     }
   }
+
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -85,19 +99,39 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                   MyButton(
                     txt: 'Войти',
                     onTap: () {
+                      preferences!.setBool('admin', isChecked);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MainPage()));
+                              builder: (context) => MainPage(
+                                    isAdmin: isChecked,
+                                  )));
                       // FluroRouterClass.router.navigateTo(context, "/showcase",
                       //     transition: TransitionType.fadeIn);
                     },
                   ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: mainGreen,
+                        activeColor: mainGreen,
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                            preferences!.setBool('admin', value);
+                            print(preferences!.getBool('admin'));
+                          });
+                        },
+                      ),
+                      const Text('Я - Администратор'),
+                    ],
+                  )
                 ],
               ),
             ),
             RichText(
-              textAlign: TextAlign.center,
               text: TextSpan(
                 style: TextStyle(
                     fontStyle: FontStyle.normal,
@@ -108,9 +142,10 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
                   TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ForgotPassword())), //
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPassword())),
                       text: 'Забыли пароль?',
                       style:
                           TextStyle(color: mainGreen, fontFamily: 'Montserrat'))

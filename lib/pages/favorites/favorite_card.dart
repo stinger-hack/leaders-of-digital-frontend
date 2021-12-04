@@ -3,9 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:stinger_web/constants.dart';
 import 'package:stinger_web/models/favorite_model.dart';
-import 'package:stinger_web/models/showcase_model.dart';
-import 'package:stinger_web/pages/showcase/full_project_card.dart';
-import 'package:stinger_web/requests.dart';
 
 class FavoriteCard extends StatefulWidget {
   final Favorite data;
@@ -138,7 +135,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
                                 fontSize: 14, fontWeight: FontWeight.w600),
                           ),
                         ),
-                        avardsIcon(rng.nextInt(3) + 1),
+                        avardsIcon(3),
                       ],
                     ),
                   ),

@@ -12,7 +12,6 @@ class HttpRequests {
       Uri.parse(url + 'v1/api/showcase/all'),
       headers: {'Content-type': 'application/json'},
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final result = projectsModelFromJson(utf8.decode(response.bodyBytes));
       return result.showcase;
@@ -27,7 +26,6 @@ class HttpRequests {
       Uri.parse(url + 'v1/api/favorite'),
       headers: {'Content-type': 'application/json'},
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final result = favoriteModelFromJson(utf8.decode(response.bodyBytes));
       return result.favorite;
@@ -41,7 +39,6 @@ class HttpRequests {
       Uri.parse(url + 'v1/api/feed'),
       headers: {'Content-type': 'application/json'},
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final result = newsModelFromJson(utf8.decode(response.bodyBytes));
       return result;
@@ -50,7 +47,7 @@ class HttpRequests {
     }
   }
 
-  Future<bool> postFavorites(String startup_id) async {
+  Future<bool> postFavorite(String startup_id) async {
     final response = await http.post(
       Uri.parse(url + 'v1/api/favorite'),
       body: json.encode({"startup_id": "$startup_id"}),
@@ -65,17 +62,22 @@ class HttpRequests {
   }
 
   Future<bool> deleteFavorite(String startup_id) async {
-    final response = await http.delete(Uri.parse(url + 'v1/api/favorite'),
-        body: {'startup_id': startup_id});
-    print(response.body);
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      throw ("postFavorites bad status code: " +
-          response.statusCode.toString());
-    }
-  }
+    print(startup_id);
+    final request =
+        http.MultipartRequest("DELETE", Uri.parse(url + 'v1/api/favorite'))
+          ..fields['startup_id'] = startup_id;
 
+    var resp = await request.send();
+    print(resp.statusCode);
+
+    return true;
+    // if (response.statusCode == 200) {
+    //   return true;
+    // } else {
+    //   throw ("deleteFavorite bad status code: " +
+    //       response.statusCode.toString());
+    // }
+  }
 
   // Future<List> search(String text) async {
   //   final uri = Uri.http(url, '/v1/api/search', {'search_str': 'text'});
@@ -93,7 +95,6 @@ class HttpRequests {
       Uri.parse(url + 'v1/api/showcase'),
       headers: {'Content-type': 'application/json'},
     );
-    print("ффввв ${response.body}");
   }
 
   Future<List<Showcase>> getMyProjects() async {
@@ -101,7 +102,6 @@ class HttpRequests {
       Uri.parse(url + 'v1/api/showcase/my'),
       headers: {'Content-type': 'application/json'},
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final result = projectsModelFromJson(utf8.decode(response.bodyBytes));
       return result.showcase;

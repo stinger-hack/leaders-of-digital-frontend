@@ -19,7 +19,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   TabController? tabController;
-
   int _index = 0;
 
   @override
@@ -33,7 +32,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     body: Stack(
       children: [
         Image.asset(
-            "images/background.png",
+            "images/backAuth.png",
           fit: BoxFit.cover,
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width
@@ -135,7 +134,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
                                                   )]
                                               ),
                                               child: Text(
-                                                  "23",
+                                                  "7",
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 16,
